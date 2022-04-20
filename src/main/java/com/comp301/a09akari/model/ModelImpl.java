@@ -29,21 +29,29 @@ public class ModelImpl implements Model {
     while (library.getPuzzle(activePuzzle).getCellType(upperBound, c) == CellType.CORRIDOR) {
       if (upperBound - 1 >= 0) {
         upperBound--;
+      } else {
+        break;
       }
     }
     while (library.getPuzzle(activePuzzle).getCellType(lowerBound, c) == CellType.CORRIDOR) {
       if (lowerBound + 1 < library.getPuzzle(activePuzzle).getHeight()) {
         lowerBound++;
+      } else {
+        break;
       }
     }
     while (library.getPuzzle(activePuzzle).getCellType(r, leftBound) == CellType.CORRIDOR) {
       if (leftBound - 1 >= 0) {
         leftBound--;
+      } else {
+        break;
       }
     }
     while (library.getPuzzle(activePuzzle).getCellType(r, rightBound) == CellType.CORRIDOR) {
       if (rightBound + 1 < library.getPuzzle(activePuzzle).getWidth()) {
         rightBound++;
+      } else {
+        break;
       }
     }
     for (int i = upperBound; i < r; i++) {
