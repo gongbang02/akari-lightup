@@ -22,50 +22,50 @@ public class ModelImpl implements Model {
   }
 
   private boolean pathHasLamp(int r, int c) {
-    int r_above = r;
-    int r_below = r;
-    int c_left = c;
-    int c_right = c;
-    while (library.getPuzzle(activePuzzle).getCellType(r_above, c) == CellType.CORRIDOR) {
-      if (r_above - 1 < 0) {
+    int upperBound = r;
+    int lowerBound = r;
+    int leftBound = c;
+    int rightBound = c;
+    while (library.getPuzzle(activePuzzle).getCellType(upperBound, c) == CellType.CORRIDOR) {
+      if (upperBound - 1 < 0) {
         break;
       }
-      r_above--;
+      upperBound--;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r_below, c) == CellType.CORRIDOR) {
-      if (r_below + 1 >= library.getPuzzle(activePuzzle).getHeight()) {
+    while (library.getPuzzle(activePuzzle).getCellType(lowerBound, c) == CellType.CORRIDOR) {
+      if (lowerBound + 1 >= library.getPuzzle(activePuzzle).getHeight()) {
         break;
       }
-      r_below++;
+      lowerBound++;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r, c_left) == CellType.CORRIDOR) {
-      if (c_left - 1 < 0) {
+    while (library.getPuzzle(activePuzzle).getCellType(r, leftBound) == CellType.CORRIDOR) {
+      if (leftBound - 1 < 0) {
         break;
       }
-      c_left--;
+      leftBound--;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r, c_right) == CellType.CORRIDOR) {
-      if (c_right + 1 >= library.getPuzzle(activePuzzle).getWidth()) {
+    while (library.getPuzzle(activePuzzle).getCellType(r, rightBound) == CellType.CORRIDOR) {
+      if (rightBound + 1 >= library.getPuzzle(activePuzzle).getWidth()) {
         break;
       }
-      c_right++;
+      rightBound++;
     }
-    for (int i = r_above; i < r; i++) {
+    for (int i = upperBound; i < r; i++) {
       if (map[i][c] == 1) {
         return true;
       }
     }
-    for (int i = r_below; i > r; i--) {
+    for (int i = lowerBound; i > r; i--) {
       if (map[i][c] == 1) {
         return true;
       }
     }
-    for (int i = c_left; i < r; i++) {
+    for (int i = leftBound; i < c; i++) {
       if (map[r][i] == 1) {
         return true;
       }
     }
-    for (int i = c_right; i > r; i--) {
+    for (int i = rightBound; i > c; i--) {
       if (map[r][i] == 1) {
         return true;
       }
