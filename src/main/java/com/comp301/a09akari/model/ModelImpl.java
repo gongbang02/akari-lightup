@@ -134,6 +134,7 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
+    notifyObservers();
     return map[r][c] == 1;
   }
 
@@ -180,9 +181,7 @@ public class ModelImpl implements Model {
   public void resetPuzzle() {
     for (int i = 0; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
       for (int j = 0; j < library.getPuzzle(activePuzzle).getWidth(); j++) {
-        if (isLamp(i, j)) {
-          removeLamp(i, j);
-        }
+        map[i][j] = 0;
       }
     }
     notifyObservers();
