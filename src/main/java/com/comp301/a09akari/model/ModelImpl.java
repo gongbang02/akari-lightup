@@ -139,7 +139,7 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    return map[r][c] == 1;
+    return map[r][c] == 1 || map[r][c] == -1;
   }
 
   @Override
@@ -150,7 +150,7 @@ public class ModelImpl implements Model {
         || c >= library.getPuzzle(activePuzzle).getWidth()) {
       throw new IndexOutOfBoundsException();
     }
-    if (map[r][c] != 1 || map[r][c] != -1) {
+    if (!isLamp(r, c)) {
       throw new IllegalArgumentException();
     }
     return map[r][c] == -1;
@@ -172,9 +172,7 @@ public class ModelImpl implements Model {
       throw new IndexOutOfBoundsException();
     }
     this.activePuzzle = index;
-    this.map =
-        new int[getActivePuzzle().getWidth()]
-            [getActivePuzzle().getHeight()];
+    this.map = new int[getActivePuzzle().getWidth()][getActivePuzzle().getHeight()];
     notifyObservers();
   }
 
@@ -225,16 +223,16 @@ public class ModelImpl implements Model {
       throw new IllegalArgumentException();
     }
     int count = 0;
-    if (map[r - 1][c] == 1 && (r - 1) >= 0) {
+    if ((r - 1) >= 0 && map[r - 1][c] == 1) {
       count += 1;
     }
-    if (map[r + 1][c] == 1 && (r + 1) < library.getPuzzle(activePuzzle).getWidth()) {
+    if ((r + 1) < library.getPuzzle(activePuzzle).getWidth() && map[r + 1][c] == 1) {
       count += 1;
     }
-    if (map[r][c - 1] == 1 && (c - 1) >= 0) {
+    if ((c - 1) >= 0 && map[r][c - 1] == 1) {
       count += 1;
     }
-    if (map[r][c + 1] == 1 && (c + 1) < library.getPuzzle(activePuzzle).getHeight()) {
+    if ((c + 1) < library.getPuzzle(activePuzzle).getHeight() && map[r][c + 1] == 1) {
       count += 1;
     }
     return count == library.getPuzzle(activePuzzle).getClue(r, c);
