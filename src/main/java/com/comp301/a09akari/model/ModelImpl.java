@@ -134,7 +134,6 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    notifyObservers();
     return map[r][c] == 1;
   }
 
