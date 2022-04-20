@@ -52,25 +52,25 @@ public class ModelImpl implements Model {
     }
     for (int i = r_above; i < r; i++) {
       if (map[i][c] == 1) {
-        return false;
+        return true;
       }
     }
     for (int i = r_below; i > r; i--) {
       if (map[i][c] == 1) {
-        return false;
+        return true;
       }
     }
     for (int i = c_left; i < r; i++) {
       if (map[r][i] == 1) {
-        return false;
+        return true;
       }
     }
     for (int i = c_right; i > r; i--) {
       if (map[r][i] == 1) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
   }
 
   private void notifyObservers() {
