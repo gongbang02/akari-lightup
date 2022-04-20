@@ -21,55 +21,56 @@ public class ModelImpl implements Model {
     this.observers = new ArrayList<>();
   }
 
-  private void onOff(String action, int r, int c) {
-    int light;
-    int r_left = r;
-    int r_right = r;
-    int c_above = c;
-    int c_below = c;
-    while (library.getPuzzle(activePuzzle).getCellType(r_left, c) == CellType.CORRIDOR) {
-      if (r_left - 1 < 0) {
+  private boolean pathHasLamp(int r, int c) {
+    int r_above = r;
+    int r_below = r;
+    int c_left = c;
+    int c_right = c;
+    while (library.getPuzzle(activePuzzle).getCellType(r_above, c) == CellType.CORRIDOR) {
+      if (r_above - 1 < 0) {
         break;
       }
-      r_left--;
+      r_above--;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r_right, c) == CellType.CORRIDOR) {
-      if (r_right + 1 >= library.getPuzzle(activePuzzle).getHeight()) {
+    while (library.getPuzzle(activePuzzle).getCellType(r_below, c) == CellType.CORRIDOR) {
+      if (r_below + 1 >= library.getPuzzle(activePuzzle).getHeight()) {
         break;
       }
-      r_right++;
+      r_below++;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r, c_above) == CellType.CORRIDOR) {
-      if (c_above - 1 < 0) {
+    while (library.getPuzzle(activePuzzle).getCellType(r, c_left) == CellType.CORRIDOR) {
+      if (c_left - 1 < 0) {
         break;
       }
-      c_above--;
+      c_left--;
     }
-    while (library.getPuzzle(activePuzzle).getCellType(r, c_below) == CellType.CORRIDOR) {
-      if (c_below + 1 >= library.getPuzzle(activePuzzle).getWidth()) {
+    while (library.getPuzzle(activePuzzle).getCellType(r, c_right) == CellType.CORRIDOR) {
+      if (c_right + 1 >= library.getPuzzle(activePuzzle).getWidth()) {
         break;
       }
-      c_below++;
+      c_right++;
     }
-    if (action == "on") {
-      light = 2;
-    } else if (action == "off") {
-      light = 0;
-    } else {
-      throw new IllegalArgumentException();
+    for (int i = r_above; i < r; i++) {
+      if (map[i][c] == 1) {
+        return false;
+      }
     }
-    for (int i = r_left; i < r; i++) {
-      map[i][c] = light;
+    for (int i = r_below; i > r; i--) {
+      if (map[i][c] == 1) {
+        return false;
+      }
     }
-    for (int i = r_right; i > r; i--) {
-      map[i][c] = light;
+    for (int i = c_left; i < r; i++) {
+      if (map[r][i] == 1) {
+        return false;
+      }
     }
-    for (int i = c_above; i < r; i++) {
-      map[i][c] = light;
+    for (int i = c_right; i > r; i--) {
+      if (map[r][i] == 1) {
+        return false;
+      }
     }
-    for (int i = c_below; i > r; i--) {
-      map[i][c] = light;
-    }
+    return true;
   }
 
   private void notifyObservers() {
@@ -89,13 +90,8 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    if (map[r][c] == 2) {
-      map[r][c] = -1;
-    } else {
-      map[r][c] = 1;
-      onOff("on", r, c);
-      notifyObservers();
-    }
+    map[r][c] = 1;
+    notifyObservers();
   }
 
   @Override
@@ -110,7 +106,6 @@ public class ModelImpl implements Model {
       throw new IllegalArgumentException();
     }
     map[r][c] = 0;
-    onOff("off", r, c);
     notifyObservers();
   }
 
@@ -125,7 +120,7 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    return map[r][c] == 1 || map[r][c] == 2;
+    return pathHasLamp(r, c);
   }
 
   @Override
@@ -139,7 +134,7 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    return map[r][c] == 1 || map[r][c] == -1;
+    return map[r][c] == 1;
   }
 
   @Override
@@ -153,7 +148,7 @@ public class ModelImpl implements Model {
     if (!isLamp(r, c)) {
       throw new IllegalArgumentException();
     }
-    return map[r][c] == -1;
+    return pathHasLamp(r, c);
   }
 
   @Override
@@ -183,8 +178,8 @@ public class ModelImpl implements Model {
 
   @Override
   public void resetPuzzle() {
-    for (int i = 0; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
-      for (int j = 0; j < library.getPuzzle(activePuzzle).getHeight(); j++) {
+    for (int i = 0; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
+      for (int j = 0; j < library.getPuzzle(activePuzzle).getWidth(); j++) {
         if (library.getPuzzle(activePuzzle).getCellType(i, j) == CellType.CORRIDOR) {
           map[i][j] = 0;
         }
@@ -195,14 +190,16 @@ public class ModelImpl implements Model {
 
   @Override
   public boolean isSolved() {
-    for (int i = 0; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
-      for (int j = 0; j < library.getPuzzle(activePuzzle).getHeight(); j++) {
+    for (int i = 0; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
+      for (int j = 0; j < library.getPuzzle(activePuzzle).getWidth(); j++) {
         if (library.getPuzzle(activePuzzle).getCellType(i, j) == CellType.CLUE) {
           if (!isClueSatisfied(i, j)) {
             return false;
           }
         } else if (library.getPuzzle(activePuzzle).getCellType(i, j) == CellType.CORRIDOR) {
           if (!isLit(i, j)) {
+            return false;
+          } else if (isLamp(i, j) && isLampIllegal(i, j)) {
             return false;
           }
         }
