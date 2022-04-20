@@ -180,8 +180,8 @@ public class ModelImpl implements Model {
   public void resetPuzzle() {
     for (int i = 0; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
       for (int j = 0; j < library.getPuzzle(activePuzzle).getWidth(); j++) {
-        if (library.getPuzzle(activePuzzle).getCellType(i, j) == CellType.CORRIDOR) {
-          map[i][j] = 0;
+        if (isLamp(i, j)) {
+          removeLamp(i, j);
         }
       }
     }
