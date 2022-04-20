@@ -5,3 +5,7 @@
  * JavaFX start() method:
  *   scene.getStylesheets().add("main.css");
  */
+.scene {
+  -fx-background-color: #bbada1;
+  -fx-padding: 10px;
+}
