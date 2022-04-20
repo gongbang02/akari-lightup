@@ -25,9 +25,10 @@ public class puzzleView implements FXComponent {
             Button corridorButton = new Button();
             int finalI = i;
             int finalJ = j;
-            corridorButton.setOnAction((ActionEvent event) -> {
-              controller.clickCell(finalI, finalJ);
-            });
+            corridorButton.setOnAction(
+                (ActionEvent event) -> {
+                  controller.clickCell(finalI, finalJ);
+                });
             layout.add(corridorButton, i, j);
           case WALL:
             Button wallButton = new Button();

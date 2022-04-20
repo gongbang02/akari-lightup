@@ -8,46 +8,51 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class controlView implements FXComponent {
-    private ClassicMvcController controller;
+  private ClassicMvcController controller;
 
-    public controlView(ClassicMvcController controller) {
-        this.controller = controller;
-    }
+  public controlView(ClassicMvcController controller) {
+    this.controller = controller;
+  }
 
-    @Override
-    public Parent render() {
-        VBox layout = new VBox();
+  @Override
+  public Parent render() {
+    VBox layout = new VBox();
 
-        Button solve = new Button("Solve!");
-        solve.setOnAction((ActionEvent event) -> {
-            controller.clickDone();
+    Button solve = new Button("Solve!");
+    solve.setOnAction(
+        (ActionEvent event) -> {
+          controller.clickDone();
         });
-        layout.getChildren().add(solve);
+    layout.getChildren().add(solve);
 
-        Button reset = new Button("Reset");
-        reset.setOnAction((ActionEvent event) -> {
-            controller.clickResetPuzzle();
+    Button reset = new Button("Reset");
+    reset.setOnAction(
+        (ActionEvent event) -> {
+          controller.clickResetPuzzle();
         });
-        layout.getChildren().add(reset);
+    layout.getChildren().add(reset);
 
-        HBox controls = new HBox();
-        Button prev = new Button("Previous Puzzle");
-        prev.setOnAction((ActionEvent event) -> {
-            controller.clickPrevPuzzle();
+    HBox controls = new HBox();
+    Button prev = new Button("Previous Puzzle");
+    prev.setOnAction(
+        (ActionEvent event) -> {
+          controller.clickPrevPuzzle();
         });
-        controls.getChildren().add(prev);
-        Button random = new Button("Random One");
-        random.setOnAction((ActionEvent event) -> {
-            controller.clickRandPuzzle();
+    controls.getChildren().add(prev);
+    Button random = new Button("Random One");
+    random.setOnAction(
+        (ActionEvent event) -> {
+          controller.clickRandPuzzle();
         });
-        controls.getChildren().add(random);
-        Button next = new Button("Next Puzzle");
-        next.setOnAction((ActionEvent event) -> {
-            controller.clickNextPuzzle();
+    controls.getChildren().add(random);
+    Button next = new Button("Next Puzzle");
+    next.setOnAction(
+        (ActionEvent event) -> {
+          controller.clickNextPuzzle();
         });
-        controls.getChildren().add(next);
-        layout.getChildren().add(controls);
+    controls.getChildren().add(next);
+    layout.getChildren().add(controls);
 
-        return layout;
-    }
+    return layout;
+  }
 }

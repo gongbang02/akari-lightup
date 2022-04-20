@@ -3,7 +3,7 @@ package com.comp301.a09akari.controller;
 import com.comp301.a09akari.model.CellType;
 import com.comp301.a09akari.model.ModelObserver;
 
-public interface ClassicMvcController extends ModelObserver{
+public interface ClassicMvcController extends ModelObserver {
   /** Handles the click action to go to the next puzzle */
   void clickNextPuzzle();
 
