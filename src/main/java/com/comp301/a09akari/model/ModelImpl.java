@@ -58,7 +58,7 @@ public class ModelImpl implements Model {
   }
 
   private void notifyObservers() {
-    for (ModelObserver o: observers) {
+    for (ModelObserver o : observers) {
       o.update(this);
     }
   }
