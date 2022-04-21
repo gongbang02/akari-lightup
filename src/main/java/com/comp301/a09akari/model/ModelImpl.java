@@ -22,49 +22,37 @@ public class ModelImpl implements Model {
   }
 
   private boolean pathHasLamp(int r, int c) {
-    int i = r - 1;
-    while (i >= 0) {
+    for (int i = r - 1; i >= 0; i--) {
       if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
       if (map[i][c] == 1) {
-        i--;
         return true;
       }
-      i--;
     }
-    i = r + 1;
-    while (i < library.getPuzzle(activePuzzle).getHeight()) {
+    for (int i = r + 1; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
       if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
       if (map[i][c] == 1) {
-        i++;
         return true;
       }
-      i++;
     }
-    i = c - 1;
-    while (i >= 0) {
+    for (int i = c - 1; i >= 0; i++) {
       if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
       if (map[r][i] == 1) {
-        i--;
         return true;
       }
-      i--;
     }
-    i = c + 1;
-    while (i < library.getPuzzle(activePuzzle).getWidth()) {
+    for (int i = c + 1; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
       if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
       if (map[r][i] == 1) {
-        i++;
         return true;
       }
-      i++;
     }
     return false;
   }
