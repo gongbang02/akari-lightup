@@ -3,7 +3,7 @@ package com.comp301.a09akari.view;
 import com.comp301.a09akari.model.ModelObserver;
 import javafx.scene.Parent;
 
-public interface FXComponent {
+public interface FXComponent extends ModelObserver {
   /** Render the component and return the resulting Parent object */
   Parent render();
 }

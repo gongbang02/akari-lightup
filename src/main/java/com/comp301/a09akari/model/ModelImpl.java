@@ -22,54 +22,34 @@ public class ModelImpl implements Model {
   }
 
   private boolean pathHasLamp(int r, int c) {
-    int upperBound = r;
-    int lowerBound = r;
-    int leftBound = c;
-    int rightBound = c;
-    while (library.getPuzzle(activePuzzle).getCellType(upperBound, c) == CellType.CORRIDOR) {
-      if (upperBound - 1 >= 0) {
-        upperBound--;
-      } else {
+    for (int i = r; i >= 0; i--) {
+      if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
-    }
-    while (library.getPuzzle(activePuzzle).getCellType(lowerBound, c) == CellType.CORRIDOR) {
-      if (lowerBound + 1 < library.getPuzzle(activePuzzle).getHeight()) {
-        lowerBound++;
-      } else {
-        break;
-      }
-    }
-    while (library.getPuzzle(activePuzzle).getCellType(r, leftBound) == CellType.CORRIDOR) {
-      if (leftBound - 1 >= 0) {
-        leftBound--;
-      } else {
-        break;
-      }
-    }
-    while (library.getPuzzle(activePuzzle).getCellType(r, rightBound) == CellType.CORRIDOR) {
-      if (rightBound + 1 < library.getPuzzle(activePuzzle).getWidth()) {
-        rightBound++;
-      } else {
-        break;
-      }
-    }
-    for (int i = upperBound; i < r; i++) {
       if (map[i][c] == 1) {
         return true;
       }
     }
-    for (int i = lowerBound; i > r; i--) {
+    for (int i = r; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
+      if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
+        break;
+      }
       if (map[i][c] == 1) {
         return true;
       }
     }
-    for (int i = leftBound; i < c; i++) {
+    for (int i = c; i >= 0; i--) {
+      if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
+        break;
+      }
       if (map[r][i] == 1) {
         return true;
       }
     }
-    for (int i = rightBound; i > c; i--) {
+    for (int i = c; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
+      if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
+        break;
+      }
       if (map[r][i] == 1) {
         return true;
       }
@@ -78,7 +58,7 @@ public class ModelImpl implements Model {
   }
 
   private void notifyObservers() {
-    for (ModelObserver o : observers) {
+    for (ModelObserver o: observers) {
       o.update(this);
     }
   }

@@ -47,29 +47,4 @@ public class ControllerImpl implements ClassicMvcController {
   public boolean clickDone() {
     return model.isSolved();
   }
-
-  @Override
-  public int getPuzzleHeight() {
-    return model.getActivePuzzle().getHeight();
-  }
-
-  @Override
-  public int getPuzzleWidth() {
-    return model.getActivePuzzle().getWidth();
-  }
-
-  @Override
-  public int getClue(int r, int c) {
-    return model.getActivePuzzle().getClue(r, c);
-  }
-
-  @Override
-  public CellType getCellType(int r, int c) {
-    return model.getActivePuzzle().getCellType(r, c);
-  }
-
-  @Override
-  public void update(Model model) {
-    this.model = model;
-  }
 }

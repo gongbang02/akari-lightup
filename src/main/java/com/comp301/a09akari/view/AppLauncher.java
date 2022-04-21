@@ -31,20 +31,15 @@ public class AppLauncher extends Application {
 
     Model model = new ModelImpl(puzzles);
     ClassicMvcController controller = new ControllerImpl(model);
-    model.addObserver(controller);
+    PuzzleView puzzleView = new PuzzleView(controller, model);
+    ControlView controlView = new ControlView(controller, model);
+    View view = new View(controller, puzzleView, controlView);
+    model.addObserver(view);
 
-    FXComponent board = new puzzleView(controller);
-    FXComponent controls = new controlView(controller);
-
-    Pane layout = new VBox();
-
-    Label label = new Label("Light Up!");
-    layout.getChildren().add(label);
-    layout.getChildren().add(board.render());
-    layout.getChildren().add(controls.render());
-
-    Scene scene = new Scene(layout, 500, 500);
+    Scene scene = new Scene(view.render());
+    scene.getStylesheets().add("main.css");
     stage.setScene(scene);
+    stage.setTitle("Play Light Up!");
     stage.show();
   }
 }
