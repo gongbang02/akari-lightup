@@ -22,7 +22,7 @@ public class ModelImpl implements Model {
   }
 
   private boolean pathHasLamp(int r, int c) {
-    for (int i = r; i >= 0; i--) {
+    for (int i = r - 1; i >= 0; i--) {
       if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
@@ -30,7 +30,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int i = r; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
+    for (int i = r + 1; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
       if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
@@ -38,7 +38,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int i = c; i >= 0; i--) {
+    for (int i = c - 1; i >= 0; i--) {
       if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
@@ -46,7 +46,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int i = c; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
+    for (int i = c + 1; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
       if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
@@ -104,7 +104,7 @@ public class ModelImpl implements Model {
     if (library.getPuzzle(activePuzzle).getCellType(r, c) != CellType.CORRIDOR) {
       throw new IllegalArgumentException();
     }
-    return pathHasLamp(r, c);
+    return pathHasLamp(r, c) || isLamp(r, c);
   }
 
   @Override
