@@ -16,8 +16,8 @@ public class ModelImpl implements Model {
     this.library = library;
     this.activePuzzle = 0;
     this.map =
-        new int[library.getPuzzle(activePuzzle).getWidth()]
-            [library.getPuzzle(activePuzzle).getHeight()];
+        new int[library.getPuzzle(activePuzzle).getHeight()]
+            [library.getPuzzle(activePuzzle).getWidth()];
     this.observers = new ArrayList<>();
   }
 
