@@ -19,6 +19,7 @@ public class ModelImpl implements Model {
         new int[library.getPuzzle(activePuzzle).getHeight()]
             [library.getPuzzle(activePuzzle).getWidth()];
     this.observers = new ArrayList<>();
+    resetPuzzle();
   }
 
   private boolean pathHasLamp(int r, int c) {
