@@ -24,15 +24,15 @@ public class ModelImpl implements Model {
 
   private boolean pathHasLamp(int r, int c) {
     for (int i = r - 1; i >= 0; i--) {
-      if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
+      if (getActivePuzzle().getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
       if (map[i][c] == 1) {
         return true;
       }
     }
-    for (int i = r + 1; i < library.getPuzzle(activePuzzle).getHeight(); i++) {
-      if (library.getPuzzle(activePuzzle).getCellType(i, c) != CellType.CORRIDOR) {
+    for (int i = r + 1; i < getActivePuzzle().getHeight(); i++) {
+      if (getActivePuzzle().getCellType(i, c) != CellType.CORRIDOR) {
         break;
       }
       if (map[i][c] == 1) {
@@ -40,15 +40,15 @@ public class ModelImpl implements Model {
       }
     }
     for (int i = c - 1; i >= 0; i--) {
-      if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
+      if (getActivePuzzle().getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
       if (map[r][i] == 1) {
         return true;
       }
     }
-    for (int i = c + 1; i < library.getPuzzle(activePuzzle).getWidth(); i++) {
-      if (library.getPuzzle(activePuzzle).getCellType(r, i) != CellType.CORRIDOR) {
+    for (int i = c + 1; i < getActivePuzzle().getWidth(); i++) {
+      if (getActivePuzzle().getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
       if (map[r][i] == 1) {
