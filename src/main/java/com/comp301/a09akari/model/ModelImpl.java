@@ -45,7 +45,7 @@ public class ModelImpl implements Model {
         return true;
       }
     }
-    for (int i = c; i < getActivePuzzle().getWidth(); ++i) {
+    for (int i = c + 1; i < getActivePuzzle().getWidth(); i++) {
       if (getActivePuzzle().getCellType(r, i) != CellType.CORRIDOR) {
         break;
       }
