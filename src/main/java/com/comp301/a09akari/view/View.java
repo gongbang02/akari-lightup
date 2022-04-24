@@ -11,8 +11,7 @@ public class View implements FXComponent {
   private ClassicMvcController controller;
   private Model model;
 
-  public View(
-      ClassicMvcController controller, Model model) {
+  public View(ClassicMvcController controller, Model model) {
     this.controller = controller;
     this.model = model;
   }
