@@ -12,7 +12,8 @@ public class View implements FXComponent {
   private ControlView control;
   private Model model;
 
-  public View(ClassicMvcController controller, PuzzleView puzzle, ControlView control, Model model) {
+  public View(
+      ClassicMvcController controller, PuzzleView puzzle, ControlView control, Model model) {
     this.controller = controller;
     this.puzzle = puzzle;
     this.control = control;
