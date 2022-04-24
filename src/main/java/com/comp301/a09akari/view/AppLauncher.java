@@ -32,16 +32,14 @@ public class AppLauncher extends Application {
 
     Model model = new ModelImpl(puzzles);
     ClassicMvcController controller = new ControllerImpl(model);
-    PuzzleView puzzleView = new PuzzleView(controller, model);
-    ControlView controlView = new ControlView(controller, model);
-    View view = new View(controller, puzzleView, controlView, model);
+    View view = new View(controller, model);
     model.addObserver(view);
 
-    Scene scene = new Scene(view.render(), 300, 300);
+    Scene scene = new Scene(view.render());
     scene.getStylesheets().add("main.css");
     stage.setScene(scene);
+    stage.setResizable(true);
     stage.setTitle("Play Light Up!");
-    stage.sizeToScene();
     stage.show();
   }
 }

@@ -4,32 +4,27 @@ import com.comp301.a09akari.controller.ClassicMvcController;
 import com.comp301.a09akari.model.Model;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 public class View implements FXComponent {
   private ClassicMvcController controller;
-  private PuzzleView puzzle;
-  private ControlView control;
   private Model model;
 
   public View(
-      ClassicMvcController controller, PuzzleView puzzle, ControlView control, Model model) {
+      ClassicMvcController controller, Model model) {
     this.controller = controller;
-    this.puzzle = puzzle;
-    this.control = control;
     this.model = model;
   }
 
   @Override
   public void update(Model model) {
-    puzzle.update(model);
-    control.update(model);
+    this.model = model;
   }
 
   @Override
   public Parent render() {
     VBox viewLayout = new VBox();
-    viewLayout.getStylesheets().add("viewLayout");
 
     Label label = new Label("Light Up! ");
     label.getStylesheets().add("label");
@@ -42,8 +37,13 @@ public class View implements FXComponent {
     }
     result.getStylesheets().add("result");
     viewLayout.getChildren().add(result);
-    viewLayout.getChildren().add(puzzle.render());
-    viewLayout.getChildren().add(control.render());
+
+    PuzzleView puzzleView = new PuzzleView(controller, model);
+    viewLayout.getChildren().add(puzzleView.render());
+
+    ControlView controlView = new ControlView(controller, model);
+    viewLayout.getChildren().add(controlView.render());
+
     return viewLayout;
   }
 }

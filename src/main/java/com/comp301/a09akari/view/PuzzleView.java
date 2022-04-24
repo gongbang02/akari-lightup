@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class PuzzleView implements FXComponent {
@@ -38,7 +40,10 @@ public class PuzzleView implements FXComponent {
                 });
             board.add(lit, i, j);
           } else if (model.isLit(i, j) && model.isLamp(i, j)) {
-            Button lamp = new Button("\uD83D\uDCA1");
+            Image bulb = new Image("light-bulb.png");
+            ImageView bulbView = new ImageView(bulb);
+            Button lamp = new Button();
+            lamp.setGraphic(bulbView);
             lamp.getStylesheets().add("lamp");
             int finalI = i;
             int finalJ = j;
