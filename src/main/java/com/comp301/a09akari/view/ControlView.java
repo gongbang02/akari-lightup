@@ -5,6 +5,7 @@ import com.comp301.a09akari.model.Model;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -56,6 +57,9 @@ public class ControlView implements FXComponent {
         });
     controls.getChildren().add(next);
     controlLayout.getChildren().add(controls);
+    Label index = new Label("Puzzle " + String.valueOf(model.getActivePuzzleIndex() + 1));
+    index.getStylesheets().add("index");
+    controlLayout.getChildren().add(index);
 
     return controlLayout;
   }

@@ -5,7 +5,57 @@
  * JavaFX start() method:
  *   scene.getStylesheets().add("main.css");
  */
-.scene {
-  -fx-background-color: #bbada1;
+
+.viewLayout {
+  -fx-background-color: #faf8f0;
+  -fx-font-family: Arial, sans-serif;
+  -fx-font-weight: bold;
+  -fx-font-size: 12px;
+  -fx-padding: 10px;
+}
+
+.board {
+  -fx-background-color: #f0ffff;
+  -fx-padding: 10px;
+
+}
+
+.lit {
+  -fx-background-color: #00ffff;
+}
+
+.lamp {
+  -fx-background-color: #00ffff;
+}
+
+.wall {
+  -fx-background-color: #000000;
+}
+
+.clue {
+  -fx-background-color: #000000;
+  -fx-text-fill: #f0ffff;
+}
+
+.viewLayout {
+  -fx-background-color: #556b2f;
+}
+
+.label {
+  -fx-background-color: #000000;
+  -fx-text-fill: #ffd700;
+}
+
+.result {
+  -fx-background-color: #f0ffff;
+}
+
+.index {
+  -fx-background-color: #f0ffff;
+  -fx-text-fill: #000000;
+}
+
+.controlLayout {
+  -fx-background-color: #f0ffff;
   -fx-padding: 10px;
 }

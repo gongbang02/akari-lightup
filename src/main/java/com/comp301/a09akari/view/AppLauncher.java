@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.concurrent.ConcurrentNavigableMap;
 
 public class AppLauncher extends Application {
@@ -33,13 +34,14 @@ public class AppLauncher extends Application {
     ClassicMvcController controller = new ControllerImpl(model);
     PuzzleView puzzleView = new PuzzleView(controller, model);
     ControlView controlView = new ControlView(controller, model);
-    View view = new View(controller, puzzleView, controlView);
+    View view = new View(controller, puzzleView, controlView, model);
     model.addObserver(view);
 
-    Scene scene = new Scene(view.render());
+    Scene scene = new Scene(view.render(), 300, 300);
     scene.getStylesheets().add("main.css");
     stage.setScene(scene);
     stage.setTitle("Play Light Up!");
+    stage.sizeToScene();
     stage.show();
   }
 }

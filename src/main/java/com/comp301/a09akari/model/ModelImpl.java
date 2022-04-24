@@ -150,7 +150,7 @@ public class ModelImpl implements Model {
       throw new IndexOutOfBoundsException();
     }
     this.activePuzzle = index;
-    this.map = new int[getActivePuzzle().getWidth()][getActivePuzzle().getHeight()];
+    this.map = new int[getActivePuzzle().getHeight()][getActivePuzzle().getWidth()];
     notifyObservers();
   }
 
@@ -204,13 +204,13 @@ public class ModelImpl implements Model {
     if ((r - 1) >= 0 && map[r - 1][c] == 1) {
       count += 1;
     }
-    if ((r + 1) < library.getPuzzle(activePuzzle).getWidth() && map[r + 1][c] == 1) {
+    if ((r + 1) < library.getPuzzle(activePuzzle).getHeight() && map[r + 1][c] == 1) {
       count += 1;
     }
     if ((c - 1) >= 0 && map[r][c - 1] == 1) {
       count += 1;
     }
-    if ((c + 1) < library.getPuzzle(activePuzzle).getHeight() && map[r][c + 1] == 1) {
+    if ((c + 1) < library.getPuzzle(activePuzzle).getWidth() && map[r][c + 1] == 1) {
       count += 1;
     }
     return count == library.getPuzzle(activePuzzle).getClue(r, c);
