@@ -20,46 +20,45 @@ public class ControlView implements FXComponent {
 
   @Override
   public Parent render() {
-    VBox controlLayout = new VBox();
+    HBox controlLayout = new HBox();
     controlLayout.getStylesheets().add("controlLayout");
 
-    Button solve = new Button("Solve!");
-    solve.setOnAction(
-        (ActionEvent event) -> {
-          controller.clickDone();
-        });
-    controlLayout.getChildren().add(solve);
-
     Button reset = new Button("Reset");
+    reset.getStylesheets().add("button");
+    reset.getStylesheets().add("button-reset");
     reset.setOnAction(
         (ActionEvent event) -> {
           controller.clickResetPuzzle();
         });
     controlLayout.getChildren().add(reset);
 
-    HBox controls = new HBox();
-    Button prev = new Button("\u25C0");
-    prev.setOnAction(
-        (ActionEvent event) -> {
-          controller.clickPrevPuzzle();
-        });
-    controls.getChildren().add(prev);
     Button random = new Button("Random Puzzle");
+    reset.getStylesheets().add("button");
+    reset.getStylesheets().add("button-random-puzzle");
     random.setOnAction(
         (ActionEvent event) -> {
           controller.clickRandPuzzle();
         });
-    controls.getChildren().add(random);
-    Button next = new Button("\u25B6");
-    next.setOnAction(
+    controlLayout.getChildren().add(random);
+
+    Button solve = new Button("Click to Solve!");
+    solve.setOnAction(
         (ActionEvent event) -> {
-          controller.clickNextPuzzle();
+          controller.clickDone();
         });
-    controls.getChildren().add(next);
-    controlLayout.getChildren().add(controls);
-    Label index = new Label("Puzzle " + String.valueOf(model.getActivePuzzleIndex() + 1));
-    index.getStylesheets().add("index");
-    controlLayout.getChildren().add(index);
+    solve.getStylesheets().add("button");
+    solve.getStylesheets().add("button-solve");
+    controlLayout.getChildren().add(solve);
+
+    Label result;
+    if (model.isSolved()) {
+      result = new Label("Congratulations! You have solved the puzzle");
+    } else {
+      result = new Label();
+    }
+    result.getStylesheets().add("label");
+    result.getStylesheets().add("label-result");
+    controlLayout.getChildren().add(result);
 
     return controlLayout;
   }

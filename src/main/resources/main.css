@@ -6,24 +6,41 @@
  *   scene.getStylesheets().add("main.css");
  */
 
-.board {
-  -fx-background-color: #f0ffff;
+
+.button {
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
   -fx-alignment: center;
 }
 
-.lit {
+.label-title {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: #00ffff;
+  -fx-pref-width: 100px;
+  -fx-pref-height: 60px;
+  -fx-font-size: 22px;
+  -fx-alignment: center;
+}
+
+.button-lit {
   -fx-background-color: #00ffff;
 }
 
-.lamp {
+.button-lamp {
   -fx-background-color: #00ffff;
 }
 
-.wall {
+.label-wall {
   -fx-background-color: #000000;
 }
 
-.clue {
+.label {
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+  -fx-alignment: center;
+}
+
+.label-clue {
   -fx-background-color: #000000;
   -fx-text-fill: #f0ffff;
 }
@@ -33,27 +50,47 @@
   -fx-alignment: center;
 }
 
-.label {
-  -fx-background-color: #000000;
+.label-index {
   -fx-text-fill: #ffd700;
-  -fx-font: 13px "Arial";
+  -fx-font: 20px "Arial";
   -fx-padding: 10;
   -fx-alignment: center;
 }
 
-.result {
+.button-reset {
+  -fx-padding: 10;
+  -fx-pref-width: 80px;
+  -fx-pref-height: 80px;
+}
+
+.button-prev {
+  -fx-pref-height: 200px;
+  -fx-padding: 10;
+}
+
+.button-next {
+  -fx-pref-height: 200px;
+  -fx-padding: 10;
+}
+
+.button-random-puzzle {
+  -fx-padding: 10;
+  -fx-pref-width: 80px;
+  -fx-pref-height: 80px;
+}
+
+.button-solve {
+  -fx-padding: 10;
+  -fx-pref-width: 80px;
+  -fx-pref-height: 80px;
+}
+
+.label-result {
   -fx-background-color: #f0ffff;
   -fx-text-fill: #ffd700;
-  -fx-font: 13px "Arial";
+  -fx-font: 20px "Arial";
   -fx-padding: 10;
   -fx-font-weight: bold;
-  -fx-alignment: center;
-}
-
-.index {
-  -fx-background-color: #f0ffff;
-  -fx-text-fill: #000000;
-  -fx--fx-font: 16px "Arial";
   -fx-alignment: center;
 }
 
