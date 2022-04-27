@@ -51,6 +51,10 @@
   -fx-background-color: #E5EB0E;
   -fx-pref-width: 50px;
   -fx-pref-height: 50px;
+  -fx-background-image: url("light-bulb.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 23 23;
+  -fx-background-position: center center;
 }
 
 .button {
@@ -113,7 +117,7 @@
 }
 
 .label-result {
-  -fx-background-color: #f0ffff;
+  -fx-background-color: #34500A;
   -fx-text-fill: #ffd700;
   -fx-padding: 10px;
   -fx-font-size: 20px;

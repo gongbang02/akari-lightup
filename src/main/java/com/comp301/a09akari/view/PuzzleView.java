@@ -38,7 +38,7 @@ public class PuzzleView implements FXComponent {
                 });
             board.add(lit, i, j);
           } else if (model.isLit(i, j) && model.isLamp(i, j)) {
-            Button lamp = new Button("\uD83D\uDCA1");
+            Button lamp = new Button();
             lamp.getStyleClass().add("button-lamp");
             int finalI = i;
             int finalJ = j;
