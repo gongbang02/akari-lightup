@@ -31,7 +31,7 @@ public class ControllerImpl implements ClassicMvcController {
     Random rn = new Random();
     int index = model.getActivePuzzleIndex();
     while (index == model.getActivePuzzleIndex()) {
-      index = rn.nextInt(0, model.getPuzzleLibrarySize());
+      index = rn.nextInt(model.getPuzzleLibrarySize());
     }
     model.setActivePuzzleIndex(index);
   }
