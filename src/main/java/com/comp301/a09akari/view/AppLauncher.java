@@ -51,10 +51,11 @@ public class AppLauncher extends Application {
     View view = new View(controller, model);
 
     Scene scene = new Scene(view.render());
-    model.addObserver((Model m) -> {
-      scene.setRoot(view.render());
-      stage.sizeToScene();
-    });
+    model.addObserver(
+        (Model m) -> {
+          scene.setRoot(view.render());
+          stage.sizeToScene();
+        });
     scene.getStylesheets().add("main.css");
     stage.setScene(scene);
     stage.setResizable(false);
