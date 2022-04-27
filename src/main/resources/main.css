@@ -6,96 +6,119 @@
  *   scene.getStylesheets().add("main.css");
  */
 
-
-.button {
-  -fx-pref-width: 50px;
-  -fx-pref-height: 50px;
-  -fx-alignment: center;
-}
-
 .label-title {
-  -fx-text-fill: #ffffff;
-  -fx-background-color: #00ffff;
-  -fx-pref-width: 100px;
-  -fx-pref-height: 60px;
-  -fx-font-size: 22px;
-  -fx-alignment: center;
-}
-
-.button-lit {
-  -fx-background-color: #00ffff;
-}
-
-.button-lamp {
-  -fx-background-color: #00ffff;
-}
-
-.label-wall {
-  -fx-background-color: #000000;
-}
-
-.label {
-  -fx-pref-width: 50px;
+  -fx-text-fill: #EAEE61;
+  -fx-background-color: #34500A;
+  -fx-pref-width: 470px;
   -fx-pref-height: 50px;
+  -fx-font-size: 28px;
   -fx-alignment: center;
 }
 
-.label-clue {
-  -fx-background-color: #000000;
-  -fx-text-fill: #f0ffff;
-}
-
-.viewLayout {
-  -fx-background-color: #556b2f;
+.label-total {
+  -fx-text-fill: #EAEE61;
+  -fx-background-color: #34500A;
+  -fx-pref-width: 470px;
+  -fx-pref-height: 15px;
+  -fx-font-size: 15px;
   -fx-alignment: center;
 }
 
 .label-index {
-  -fx-text-fill: #ffd700;
-  -fx-font: 20px "Arial";
-  -fx-padding: 10;
+  -fx-text-fill: #EAEE61;
+  -fx-background-color: #34500A;
+  -fx-pref-width: 470px;
+  -fx-pref-height: 40px;
+  -fx-font-size: 22px;
   -fx-alignment: center;
 }
 
+.board {
+  -fx-background-color: #34500A;
+  -fx-alignment: center;
+  -fx-padding: 10px;
+  -fx-max-width: 370px;
+  -fx-max-height: 370px;
+}
+
+.button-lit {
+  -fx-background-color: #EAEE61;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+}
+
+.button-lamp {
+  -fx-background-color: #E5EB0E;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+}
+
+.button {
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+}
+
+.label-wall {
+  -fx-background-color: #000000;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+}
+
+.satisfiedClue {
+  -fx-background-color: #169aa6;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+  -fx-text-fill: #EAEE61;
+  -fx-alignment: center;
+  -fx-font-size: 20px;
+}
+
+.unsatisfiedClue {
+  -fx-background-color: #000000;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+  -fx-text-fill: #f0ffff;
+  -fx-alignment: center;
+  -fx-font-size: 20px;
+}
+
 .button-reset {
-  -fx-padding: 10;
-  -fx-pref-width: 80px;
-  -fx-pref-height: 80px;
+  -fx-padding: 10px;
+  -fx-pref-width: 235px;
+  -fx-pref-height: 50px;
 }
 
 .button-prev {
-  -fx-pref-height: 200px;
-  -fx-padding: 10;
+  -fx-pref-height: 370px;
+  -fx-max-height: 390px;
+  -fx-padding: 10px;
+  -fx-alignment: center;
 }
 
 .button-next {
-  -fx-pref-height: 200px;
-  -fx-padding: 10;
+  -fx-pref-height: 370px;
+  -fx-max-height: 390px;
+  -fx-padding: 10px;
+  -fx-alignment: center;
 }
 
 .button-random-puzzle {
-  -fx-padding: 10;
-  -fx-pref-width: 80px;
-  -fx-pref-height: 80px;
+  -fx-padding: 10px;
+  -fx-pref-width: 235px;
+  -fx-pref-height: 50px;
 }
 
-.button-solve {
-  -fx-padding: 10;
-  -fx-pref-width: 80px;
-  -fx-pref-height: 80px;
+.viewLayout {
+  -fx-background-color: #556b2f;
 }
 
 .label-result {
   -fx-background-color: #f0ffff;
   -fx-text-fill: #ffd700;
-  -fx-font: 20px "Arial";
-  -fx-padding: 10;
-  -fx-font-weight: bold;
-  -fx-alignment: center;
-}
-
-.controlLayout {
-  -fx-background-color: #f0ffff;
   -fx-padding: 10px;
+  -fx-font-size: 20px;
+  -fx-pref-width: 470px;
+  -fx-pref-height: 50px;
+  -fx-font-weight: bold;
   -fx-alignment: center;
 }

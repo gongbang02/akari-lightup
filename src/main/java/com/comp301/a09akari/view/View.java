@@ -28,34 +28,32 @@ public class View implements FXComponent {
     BorderPane viewLayout = new BorderPane();
 
     VBox labelLayout = new VBox();
-    Label title = new Label("LIGHT UP! ");
-    title.getStylesheets().add("label");
-    title.getStylesheets().add("label-title");
+    Label title = new Label("LIGHT UP THE CELLS! ");
+    title.getStyleClass().add("label-title");
     labelLayout.getChildren().add(title);
+    Label total = new Label(String.valueOf(model.getPuzzleLibrarySize()) + " Puzzles in Total");
+    total.getStyleClass().add("label-total");
+    labelLayout.getChildren().add(total);
     Label index = new Label("Puzzle " + String.valueOf(model.getActivePuzzleIndex() + 1));
-    index.getStylesheets().add("label");
-    index.getStylesheets().add("label-index");
+    index.getStyleClass().add("label-index");
     labelLayout.getChildren().add(index);
 
     viewLayout.setTop(labelLayout);
 
     Button prev = new Button("\u25C0");
-    prev.getStylesheets().add("button");
-    prev.getStylesheets().add("button-prev");
+    prev.getStyleClass().add("button-prev");
     prev.setOnAction(
         (ActionEvent event) -> {
           controller.clickPrevPuzzle();
         });
     viewLayout.setLeft(prev);
     Button next = new Button("\u25B6");
-    next.getStylesheets().add("button");
-    next.getStylesheets().add("button-next");
+    next.getStyleClass().add("button-next");
     next.setOnAction(
-            (ActionEvent event) -> {
-              controller.clickNextPuzzle();
-            });
+        (ActionEvent event) -> {
+          controller.clickNextPuzzle();
+        });
     viewLayout.setRight(next);
-
 
     PuzzleView puzzleView = new PuzzleView(controller, model);
     viewLayout.setCenter(puzzleView.render());

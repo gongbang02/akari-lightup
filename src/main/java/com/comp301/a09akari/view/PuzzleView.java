@@ -23,14 +23,13 @@ public class PuzzleView implements FXComponent {
   @Override
   public Parent render() {
     GridPane board = new GridPane();
-    board.getStylesheets().add("board");
+    board.getStyleClass().add("board");
     for (int i = 0; i < model.getActivePuzzle().getHeight(); i++) {
       for (int j = 0; j < model.getActivePuzzle().getWidth(); j++) {
         if (model.getActivePuzzle().getCellType(i, j) == CellType.CORRIDOR) {
           if (model.isLit(i, j) && !model.isLamp(i, j)) {
             Button lit = new Button();
-            lit.getStylesheets().add("button");
-            lit.getStylesheets().add("button-lit");
+            lit.getStyleClass().add("button-lit");
             int finalI = i;
             int finalJ = j;
             lit.setOnAction(
@@ -39,12 +38,8 @@ public class PuzzleView implements FXComponent {
                 });
             board.add(lit, i, j);
           } else if (model.isLit(i, j) && model.isLamp(i, j)) {
-            Image bulb = new Image("light-bulb.png");
-            ImageView bulbView = new ImageView(bulb);
-            Button lamp = new Button();
-            lamp.setGraphic(bulbView);
-            lamp.getStylesheets().add("button");
-            lamp.getStylesheets().add("button-lamp");
+            Button lamp = new Button("\uD83D\uDCA1");
+            lamp.getStyleClass().add("button-lamp");
             int finalI = i;
             int finalJ = j;
             lamp.setOnAction(
@@ -54,6 +49,7 @@ public class PuzzleView implements FXComponent {
             board.add(lamp, i, j);
           } else {
             Button corridorButton = new Button();
+            corridorButton.getStyleClass().add("button");
             int finalI = i;
             int finalJ = j;
             corridorButton.setOnAction(
@@ -64,14 +60,19 @@ public class PuzzleView implements FXComponent {
           }
         } else if (model.getActivePuzzle().getCellType(i, j) == CellType.WALL) {
           Label wall = new Label();
-          wall.getStylesheets().add("label");
-          wall.getStylesheets().add("label-wall");
+          wall.getStyleClass().add("label-wall");
           board.add(wall, i, j);
         } else {
-          Label clue = new Label(String.valueOf(model.getActivePuzzle().getClue(i, j)));
-          clue.getStylesheets().add("label");
-          clue.getStylesheets().add("label-clue");
-          board.add(clue, i, j);
+          if (model.isClueSatisfied(i, j)) {
+            Label satisfiedClue = new Label(String.valueOf(model.getActivePuzzle().getClue(i, j)));
+            satisfiedClue.getStyleClass().add("satisfiedClue");
+            board.add(satisfiedClue, i, j);
+          } else {
+            Label unsatisfiedClue =
+                new Label(String.valueOf(model.getActivePuzzle().getClue(i, j)));
+            unsatisfiedClue.getStyleClass().add("unsatisfiedClue");
+            board.add(unsatisfiedClue, i, j);
+          }
         }
       }
     }

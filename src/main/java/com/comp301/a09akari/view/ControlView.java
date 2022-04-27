@@ -20,12 +20,12 @@ public class ControlView implements FXComponent {
 
   @Override
   public Parent render() {
+    VBox controlView = new VBox();
+
     HBox controlLayout = new HBox();
-    controlLayout.getStylesheets().add("controlLayout");
 
     Button reset = new Button("Reset");
-    reset.getStylesheets().add("button");
-    reset.getStylesheets().add("button-reset");
+    reset.getStyleClass().add("button-reset");
     reset.setOnAction(
         (ActionEvent event) -> {
           controller.clickResetPuzzle();
@@ -33,22 +33,13 @@ public class ControlView implements FXComponent {
     controlLayout.getChildren().add(reset);
 
     Button random = new Button("Random Puzzle");
-    reset.getStylesheets().add("button");
-    reset.getStylesheets().add("button-random-puzzle");
+    random.getStyleClass().add("button-random-puzzle");
     random.setOnAction(
         (ActionEvent event) -> {
           controller.clickRandPuzzle();
         });
     controlLayout.getChildren().add(random);
-
-    Button solve = new Button("Click to Solve!");
-    solve.setOnAction(
-        (ActionEvent event) -> {
-          controller.clickDone();
-        });
-    solve.getStylesheets().add("button");
-    solve.getStylesheets().add("button-solve");
-    controlLayout.getChildren().add(solve);
+    controlView.getChildren().add(controlLayout);
 
     Label result;
     if (model.isSolved()) {
@@ -56,11 +47,10 @@ public class ControlView implements FXComponent {
     } else {
       result = new Label();
     }
-    result.getStylesheets().add("label");
-    result.getStylesheets().add("label-result");
-    controlLayout.getChildren().add(result);
+    result.getStyleClass().add("label-result");
+    controlView.getChildren().add(result);
 
-    return controlLayout;
+    return controlView;
   }
 
   @Override
